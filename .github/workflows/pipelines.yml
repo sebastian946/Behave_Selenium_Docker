@@ -1,0 +1,24 @@
+name: pipelines behave selenium
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@2
+
+      - name: Install requeriments
+        uses: pip install -r requirements.txt
+
+      - name: Run the test with behave
+        uses: behave
